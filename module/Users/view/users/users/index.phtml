@@ -1,0 +1,86 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+$this->headLink()
+->prependStylesheet($this->basePath('dist/global/vendor/datatables-responsive/dataTables.responsive.min.css'))
+->prependStylesheet($this->basePath('dist/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css'))
+->prependStylesheet($this->basePath('dist/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css'));
+?>
+
+<div class="page-header">
+    <h1 class="page-title">User list</h1>
+    <ol class="breadcrumb">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="javascript:void(0)">Tables</a></li>
+        <li class="active">jsGrid</li>
+    </ol>
+    <div class="page-header-actions">
+        <a class="btn btn-sm btn-default btn-outline btn-round" href="http://js-grid.com"
+           target="_blank">
+            <i class="icon wb-link" aria-hidden="true"></i>
+            <span class="hidden-xs">Official Website</span>
+        </a>
+    </div>
+</div>
+
+<div class="page-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Panel Table Tools -->
+            <div class="panel">
+                <header class="panel-heading">
+                    <h3 class="panel-title">Table Tools</h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped width-full" id="exampleTableTools">
+                        <thead>
+                            <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($this->users as $key => $user) : ?>
+                                <tr>
+                                    <td><?php echo $user->getFirstName() ?></td>
+                                    <td><?php echo $user->getLastName() ?></td>
+                                    <td><?php echo $user->getUsername() ?></td>
+                                    <td><?php echo $user->getRoles() ?></td>
+                                    <td class="actions">
+                                        <a href="<?php echo $this->url('app/admin/users/edit', ['locale' => $this->locale()->current(), 'id' => $user->getId()]) ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" data-toggle="tooltip" data-original-title="Edit">
+                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row" data-toggle="tooltip" data-original-title="Remove">
+                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Table Tools -->
+        </div>
+    </div>
+</div>
+
+<?php
+$this->inlineScript()
+->prependFile($this->basePath('dist/global/vendor/bootbox/bootbox.js'))
+->prependFile($this->basePath('dist/global/vendor/asrange/jquery-asRange.min.js'))
+->prependFile($this->basePath('dist/global/vendor/datatables-tabletools/dataTables.tableTools.js'))
+->prependFile($this->basePath('dist/global/vendor/datatables-responsive/dataTables.responsive.js'))
+->prependFile($this->basePath('dist/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js'))
+->prependFile($this->basePath('dist/global/vendor/datatables-fixedheader/dataTables.fixedHeader.js'))
+->prependFile($this->basePath('dist/global/vendor/datatables/jquery.dataTables.min.js'));
+$this->inlineComponent()
+->prependFile($this->basePath('dist/assets/examples/js/uikit/icon.min.js'))
+->prependFile($this->basePath('dist/assets/examples/js/tables/datatable.min.js'))
+->prependFile($this->basePath('dist/global/js/components/datatables.min.js'));
+?>

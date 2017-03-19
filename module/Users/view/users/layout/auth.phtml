@@ -1,0 +1,96 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+echo $this->doctype();
+?>
+<html class="no-js css-menubar" lang="<?php echo substr($this->locale()->current(), 0, 2); ?>">
+<head>
+    <meta charset="utf-8">
+    <?php
+        echo $this->headTitle($this->translate('Project name'))->setSeparator(' - ')->setAutoEscape(false);
+        echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+        echo $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/img/favicon.ico')])
+            ->prependStylesheet('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic')
+            ->prependStylesheet($this->basePath('dist/global/fonts/brand-icons/brand-icons.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/fonts/web-icons/web-icons.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/vendor/flag-icon-css/flag-icon.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/vendor/slidepanel/slidePanel.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/vendor/intro-js/introjs.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/vendor/switchery/switchery.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/vendor/asscrollable/asScrollable.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/vendor/animsition/animsition.min.css'))
+            ->prependStylesheet($this->basePath('dist/assets/css/site.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/css/bootstrap-extend.min.css'))
+            ->prependStylesheet($this->basePath('dist/global/css/bootstrap.min.css'));
+    ?>
+    <!-- Skin tools (demo site only) -->
+    <link rel="stylesheet" href="<?php echo $this->basePath('dist/global/vendor/skin-tools/skintools.min.css') ?>">
+    <script src="<?php echo $this->basePath('dist/global/vendor/skin-tools/skintools.js') ?>"></script>
+    <!--[if lt IE 9]>
+    <script src="<?php echo $this->basePath('dist/global/vendor/html5shiv/html5shiv.min.js'); ?>"></script>
+    <![endif]-->
+    <!--[if lt IE 10]>
+    <script src="<?php echo $this->basePath('dist/global/vendor/media-match/media.match.min.js'); ?>"></script>
+    <script src="<?php echo $this->basePath('dist/global/vendor/respond/respond.min.js'); ?>"></script>
+    <![endif]-->
+    <?php
+        echo $this->headScript()
+            ->prependFile($this->basePath('dist/global/vendor/breakpoints/breakpoints.min.js'))
+            ->prependFile($this->basePath('dist/global/vendor/modernizr/modernizr.min.js'))
+            ->prependFile($this->basePath('dist/global/vendor/jquery/jquery.min.js'));
+    ?>
+    <script>Breakpoints();</script>
+</head>
+<body class="page-login-v3 layout-full">
+<!--[if lt IE 8]>
+<p class="browserupgrade">
+    You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+</p>
+<![endif]-->
+
+<div class="page animsition vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <?php echo $this->content; ?>
+</div>
+
+<?php
+echo $this->inlineScript()
+    ->prependFile($this->basePath('dist/global/vendor/slidepanel/jquery-slidePanel.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/screenfull/screenfull.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/intro-js/intro.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/switchery/switchery.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/asscrollable/jquery.asScrollable.all.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/mousewheel/jquery.mousewheel.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/asscroll/jquery-asScroll.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/animsition/animsition.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/bootstrap/bootstrap.min.js'));
+echo $this->inlineComponent()
+    ->prependFile($this->basePath('dist/global/js/components/switchery.min.js'))
+    ->prependFile($this->basePath('dist/global/js/components/slidepanel.min.js'))
+    ->prependFile($this->basePath('dist/global/js/components/animsition.min.js'))
+    ->prependFile($this->basePath('dist/global/js/components/asscrollable.min.js'))
+    ->prependFile($this->basePath('dist/assets/js/configs/config-tour.min.js'))
+    ->prependFile($this->basePath('dist/global/js/configs/config-colors.min.js'))
+    ->prependFile($this->basePath('dist/assets/js/sections/sidebar.min.js'))
+    ->prependFile($this->basePath('dist/assets/js/sections/gridmenu.min.js'))
+    ->prependFile($this->basePath('dist/assets/js/sections/menubar.min.js'))
+    ->prependFile($this->basePath('dist/assets/js/sections/menu.min.js'))
+    ->prependFile($this->basePath('dist/assets/js/site.min.js'))
+    ->prependFile($this->basePath('dist/global/js/core.min.js'));
+?>
+<script>
+    (function(document, window, $) {
+        'use strict';
+
+        var Site = window.Site;
+        $(document).ready(function() {
+            Site.run();
+        });
+    })(document, window, jQuery);
+</script>
+</body>
+</html>

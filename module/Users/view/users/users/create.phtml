@@ -1,0 +1,89 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+$this->headLink()
+->prependStylesheet($this->basePath('dist/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.css'))
+->prependStylesheet($this->basePath('dist/global/vendor/bootstrap-select/bootstrap-select.min.css'));
+?>
+<div class="page-header">
+    <h1 class="page-title">Create user</h1>
+
+    <ol class="breadcrumb">
+        <li><a href="<?php echo $this->url('app/admin/dashboard') ?>">Dashbaord</a></li>
+        <li><a href="<?php echo $this->url('app/admin/users') ?>">Users</a></li>
+        <li class="active">Create</li>
+    </ol>
+</div>
+
+<div class="page-content">
+    <div class="panel">
+        <div class="panel-body container-fluid">
+            <div class="row row-lg">
+                <div class="col-md-12">
+<?php
+/**
+* @var \Zend\Form\Form $form
+*/
+$form = $this->form;
+
+$form->setAttribute('action', $this->url('app/admin/users/create', ['locale' => $this->locale()->current()]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('username')); ?>
+        <?php echo $this->formText($form->get('username')->setAttribute('placeholder', $this->translate('Username'))); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('password')); ?>
+        <?php echo $this->formPassword($form->get('password')->setAttribute('placeholder', $this->translate('Password'))); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('email')); ?>
+        <?php echo $this->formEmail($form->get('email')->setAttribute('placeholder', $this->translate('Email'))); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('roles')); ?>
+        <?php echo $this->formSelect($form->get('roles')); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('first_name')); ?>
+        <?php echo $this->formText($form->get('first_name')->setAttribute('placeholder', $this->translate('First name'))); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('last_name')); ?>
+        <?php echo $this->formText($form->get('last_name')->setAttribute('placeholder', $this->translate('Last name'))); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formLabel($form->get('birthday')); ?>
+        <?php echo $this->formDatetime($form->get('birthday')->setAttribute('placeholder', $this->translate('Birthday'))); ?>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary pull-right">
+            Create user
+        </button>
+    </div>
+<?php echo $this->form()->closeTag(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$this->inlineScript()
+->prependFile($this->basePath('dist/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js'))
+->prependFile($this->basePath('dist/global/vendor/bootstrap-select/bootstrap-select.min.js'));
+$this->inlineComponent()
+->prependFile($this->basePath('dist/global/js/components/bootstrap-datepicker.min.js'))
+->prependFile($this->basePath('dist/global/js/components/bootstrap-select.min.js'));
+?>

@@ -1,0 +1,37 @@
+<?php echo \Application\Controller\IndexController::class ?>
+
+<ul>
+    <?php foreach($this->locale()->all() as $key => $value) : ?>
+        <li style="display: inline-block;">
+            <a href="<?php echo $this->url('app/home', ['locale' => $key]) ?>">
+                <?php echo $value ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+<br>
+
+<?php if ($this->isGranted('admin.main')) : ?>
+<a href="<?php echo $this->url('app/admin/dashboard', ['locale' => $this->locale()->current()]) ?>">
+    Admin
+</a>
+<?php endif; ?>
+
+<a href="<?php echo $this->url('login', ['locale' => $this->locale()->current()]) ?>">
+    Login
+</a>
+
+<a href="<?php echo $this->url('register', ['locale' => $this->locale()->current()]) ?>">
+    Register
+</a>
+
+<?php if ($this->identity()) : ?>
+<a href="<?php echo $this->url('logout') ?>">
+    Logout
+</a>
+
+<p>
+    <?php echo $this->identity()->getUsername() ?><br>
+    <?php echo $this->identity()->getRoles() ?><br>
+</p>
+<?php endif; ?>

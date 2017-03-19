@@ -1,0 +1,99 @@
+<?php
+/**
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+$this->headLink()
+    ->prependStylesheet($this->basePath('dist/assets/examples/css/pages/login-v3.min.css'))
+    ->prependStylesheet($this->basePath('dist/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.css'));
+?>
+    <div class="page-content vertical-align-middle">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="brand">
+                    <img class="brand-img" src="<?php echo $this->basePath('dist/assets/images/logo-blue.png') ?>">
+                    <h2 class="brand-text font-size-18">
+                        Sayyor qabul
+                    </h2>
+                </div>
+
+                <?php
+                    /**
+                     * @var \Zend\Form\Form $form
+                     */
+                    $form = $this->form;
+
+                    $form->setAttribute('action', $this->url(null, ['locale' => $this->locale()->current()], [], null));
+                    $form->prepare();
+
+                    echo $this->form()->openTag($form);
+                ?>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formText($form->get('username'));
+                    echo $this->formLabel($form->get('username'));
+                    ?>
+                </div>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formPassword($form->get('password'));
+                    echo $this->formLabel($form->get('password'));
+                    ?>
+                </div>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formPassword($form->get('password_confirm'));
+                    echo $this->formLabel($form->get('password_confirm'));
+                    ?>
+                </div>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formEmail($form->get('email'));
+                    echo $this->formLabel($form->get('email'));
+                    ?>
+                </div>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formText($form->get('first_name'));
+                    echo $this->formLabel($form->get('first_name'));
+                    ?>
+                </div>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formText($form->get('last_name'));
+                    echo $this->formLabel($form->get('last_name'));
+                    ?>
+                </div>
+
+                <div class="form-group form-material floating">
+                    <?php
+                    echo $this->formDatetime($form->get('birthday'));
+                    echo $this->formLabel($form->get('birthday'));
+                    ?>
+                </div>
+
+                <?php echo $this->formHidden($form->get('csrf')); ?>
+
+                <button type="submit" class="btn btn-primary btn-block btn-lg margin-top-40">
+                    <?php echo $this->translate('Sign up') ?>
+                </button>
+                <?php echo $this->form()->closeTag(); ?>
+
+                <p>Still no account? Please go to <a href="#">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+<?php
+$this->inlineScript()
+    ->prependFile($this->basePath('dist/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js'))
+    ->prependFile($this->basePath('dist/global/vendor/jquery-placeholder/jquery.placeholder.min.js'));
+$this->inlineComponent()
+    ->prependFile($this->basePath('dist/global/js/components/bootstrap-datepicker.js'))
+    ->prependFile($this->basePath('dist/global/js/components/material.min.js'))
+    ->prependFile($this->basePath('dist/global/js/components/jquery-placeholder.min.js'));
+?>
